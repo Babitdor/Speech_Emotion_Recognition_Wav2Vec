@@ -73,6 +73,7 @@ Precision: 84%
 Recall: 83%
 F1-Score: 83%
 
-But the model in it's current state needs to be trained on more data. 
+# NOTE: 
+The model in it's current state needs to be trained on more data. 
 Currently the model has been trained on a subset size of 5000, because of hardware limitations.
 But with more data, it is capable of performing well than the current state.
