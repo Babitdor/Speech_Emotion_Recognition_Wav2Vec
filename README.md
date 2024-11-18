@@ -61,8 +61,6 @@ Follow these steps to set up the environment for this project:
 
 After training, the model is evaluated on a separate test set using common classification metrics.
 
-## Metrics:
-Accuracy: Percentage of correctly predicted emotions.
 
 # NOTE: 
 The model in it's current state needs to be trained on more data. 
