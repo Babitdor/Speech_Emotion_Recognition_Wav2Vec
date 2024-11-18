@@ -46,27 +46,20 @@ run : .env/Scripts/Activate
 
 Install the required dependencies:
 
-bash
-Copy code
-pip install -r requirements.txt
-The requirements.txt includes:
+     ```bash
+          Copy code
+          pip install -r requirements.txt
+          The requirements.txt includes:
+     
 
-
-The model is trained for emotion classification by leveraging transfer learning. Wav2Vec 2.0 is pre-trained on a large amount of unlabeled speech data, and this project fine-tunes it on a labeled emotion dataset (RAVDESS & ESD). The model is trained for multiple epochs with a learning rate of 5e-5.
-
-Loss function: Cross-entropy loss
-Optimizer: Adam optimizer with learning rate decay
-Evaluation metrics: Accuracy, Precision, Recall, F1-score
-Evaluation
+## Evaluation
+### Evaluation metrics: Accuracy, Precision, Recall, F1-score
+### Loss function: Cross-entropy loss
+### Optimizer: Adam optimizer with learning rate decay
 After training, the model is evaluated on a separate test set using common classification metrics.
 
-bash
-Copy code
-python evaluate.py --test_data /path/to/test_data --model_path /path/to/saved_model
-Metrics:
+## Metrics:
 Accuracy: Percentage of correctly predicted emotions.
-Results
-The model’s performance is evaluated on accuracy. 
 
 # NOTE: 
 The model in it's current state needs to be trained on more data. 
