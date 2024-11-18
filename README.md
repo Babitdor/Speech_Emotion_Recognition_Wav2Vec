@@ -49,7 +49,7 @@ Follow these steps to set up the environment for this project:
 3. Install the required dependencies:
 
      ```bash
-          pip install -r requirements.txt
+     pip install -r requirements.txt
      
 ## Evaluation
 ### Evaluation metrics: Accuracy, Precision, Recall, F1-score
