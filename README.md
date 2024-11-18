@@ -30,28 +30,27 @@ The base model used is Wav2Vec 2.0, a self-supervised model for learning represe
 Wav2Vec 2.0 for extracting features from raw audio input.
 Fully Connected Layers (FC) for emotion classification after extracting features.
 Softmax layer for multi-class emotion classification (happy, sad, angry, etc.).
-Installation
+
+## Installation
 Follow these steps to set up the environment for this project:
 
-Clone the repository:
-
-bash
-Copy code
-git clone https://github.com/yourusername/Speech-Emotion-Recognition.git
-cd Speech-Emotion-Recognition
-
-create a virtual environment 
-python -m venv .env
-run : .env/Scripts/Activate
-
-Install the required dependencies:
+1. Clone the repository:
 
      ```bash
-          Copy code
-          pip install -r requirements.txt
-          The requirements.txt includes:
-     
+     git clone https://github.com/yourusername/Speech-Emotion-Recognition.git
+     cd Speech-Emotion-Recognition
 
+2. Create a virtual environment
+
+     ```bash 
+     python -m venv .env
+     run : .env/Scripts/Activate
+
+3. Install the required dependencies:
+
+     ```bash
+          pip install -r requirements.txt
+     
 ## Evaluation
 ### Evaluation metrics: Accuracy, Precision, Recall, F1-score
 ### Loss function: Cross-entropy loss
