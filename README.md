@@ -52,7 +52,7 @@ Follow these steps to set up the environment for this project:
      pip install -r requirements.txt
      
 # Evaluation
-### Evaluation metrics: 
+### Metrics: 
      Accuracy, Precision, Recall, F1-score
 ### Loss function: 
      Cross-entropy loss
