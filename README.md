@@ -66,12 +66,7 @@ python evaluate.py --test_data /path/to/test_data --model_path /path/to/saved_mo
 Metrics:
 Accuracy: Percentage of correctly predicted emotions.
 Results
-The model’s performance is evaluated on accuracy. Example results:
-
-Accuracy: 85.5%
-Precision: 84%
-Recall: 83%
-F1-Score: 83%
+The model’s performance is evaluated on accuracy. 
 
 # NOTE: 
 The model in it's current state needs to be trained on more data. 
