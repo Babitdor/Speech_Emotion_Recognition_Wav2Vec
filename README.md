@@ -51,13 +51,15 @@ Follow these steps to set up the environment for this project:
      ```bash
      pip install -r requirements.txt
      
-## Evaluation
+# Evaluation
 ### Evaluation metrics: 
      Accuracy, Precision, Recall, F1-score
 ### Loss function: 
      Cross-entropy loss
-### Optimizer: Adam optimizer with learning rate decay
-     After training, the model is evaluated on a separate test set using common classification metrics.
+### Optimizer: 
+     Adam optimizer with learning rate decay
+
+After training, the model is evaluated on a separate test set using common classification metrics.
 
 ## Metrics:
 Accuracy: Percentage of correctly predicted emotions.
