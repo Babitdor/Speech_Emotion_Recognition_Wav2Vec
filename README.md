@@ -1,68 +1,115 @@
-# Speech Emotion Recognition using Wav2Vec 2.0
-This repository implements a Speech Emotion Recognition (SER) system by fine-tuning a pretrained Wav2Vec 2.0 model on a combined dataset of RAVDESS and ESD (Emotional Speech Database). The goal is to classify emotions from spoken audio using a deep learning approach.
+# Speech Emotion Recognition with Wav2Vec2
 
-This project leverages the Wav2Vec 2.0 model, a powerful pretrained speech-to-text model developed by Facebook AI, and fine-tunes it for the task of speech emotion recognition. The fine-tuning is performed using a combined dataset of the RAVDESS and ESD datasets, which contain audio clips with labeled emotional expressions.
+This project implements **Speech Emotion Recognition (SER)** using [Wav2Vec2](https://huggingface.co/facebook/wav2vec2-base-960h) and the Hugging Face Transformers library. It supports training, evaluation, and inference on custom or public emotion-labeled speech datasets.
 
-## Key features:
+---
 
-Pretrained Wav2Vec 2.0 model for feature extraction
-Fine-tuning on emotion-labeled speech datasets
-Evaluation of emotion classification performance
+## Features
 
-## Datasets
-The project combines two publicly available emotion-labeled speech datasets:
+- **Wav2Vec2-based** audio feature extraction and classification
+- Customizable data augmentation and class balancing
+- Handles class imbalance with weighted loss
+- Training, validation, and inference scripts
+- Streamlit web app for interactive audio emotion prediction (supports file upload and voice recording)
+- TensorBoard logging and checkpointing
 
-### RAVDESS (The Ryerson Audio-Visual Database of Emotional Speech and Song)
+---
 
-A dataset consisting of 24 actors (12 male and 12 female), with each recording 8 emotions (calm, happy, sad, angry, fearful, surprise, disgust, and neutral) in both speech and song.
-Contains 2,880 clips in total.
+## Project Structure
 
-### ESD (Emotional Speech Database)
+```
+.
+├── data/                   # Place your train/test metadata and audio files here
+├── scripts/
+│   ├── dataloader.py       # SERDataLoader: dataset class
+│   ├── datacollator.py     # Data collator for batching
+│   ├── loss.py             # Custom loss functions (center, focal)
+│   ├── pretrained_model.py # Wav2Vec2ForAudioClassification model
+│   ├── augmentation.py     # Audio augmentation utilities
+│   ├── eval.py             # compute_metrics for evaluation
+│   └── utils.py            # Utility functions
+├── train.py                # Main training script
+├── inference.py            # Streamlit inference app
+├── datasetPrep.py          # Data preparation and balancing
+└── requirements.txt        # Python dependencies
+```
 
-A dataset containing emotionally varied speech in multiple languages.
-Includes 3,000+ recordings across a wide range of emotional categories.
-The data is preprocessed, including resampling, trimming, and converting audio to spectrograms or mel-frequency cepstral coefficients (MFCCs) for training the model.
+---
 
-## Model
-The base model used is Wav2Vec 2.0, a self-supervised model for learning representations of raw speech audio. It has been shown to perform well for speech-related tasks, including Automatic Speech Recognition (ASR). For this project, the model is fine-tuned to predict emotions from speech instead of transcribing it into text.
+## Getting Started
 
-## Architecture:
-Wav2Vec 2.0 for extracting features from raw audio input.
-Fully Connected Layers (FC) for emotion classification after extracting features.
-Softmax layer for multi-class emotion classification (happy, sad, angry, etc.).
+### 1. Install Dependencies
 
-## Installation
-Follow these steps to set up the environment for this project:
+```bash
+pip install -r requirements.txt
+```
 
-1. Clone the repository:
+### 2. Prepare Data
 
-     ```bash
-     git clone https://github.com/yourusername/Speech-Emotion-Recognition.git
-     cd Speech-Emotion-Recognition
+- Place your audio files and metadata JSONs in the `data/` directory.
+- Use `datasetPrep.py` to balance and split your dataset.
 
-2. Create a virtual environment
+### 3. Train the Model
 
-     ```bash 
-     python -m venv .env
-     run : .env/Scripts/Activate
+```bash
+python train.py
+```
 
-3. Install the required dependencies:
+- Training progress and logs will be saved in the `models/` and `logs/` directories.
 
-     ```bash
-     pip install -r requirements.txt
-     
-# Evaluation
-### Metrics: 
-     Accuracy, Precision, Recall, F1-score
-### Loss function: 
-     Cross-entropy loss
-### Optimizer: 
-     Adam optimizer with learning rate decay
+### 4. Run Inference (Web App)
 
-After training, the model is evaluated on a separate test set using common classification metrics.
+```bash
+streamlit run inference.py
+```
 
+- Upload a `.wav` file or record your voice to get emotion predictions.
 
-# NOTE: 
-The model in it's current state needs to be trained on more data. 
-Currently the model has been trained on a subset size of 5000, because of hardware limitations.
-But with more data, it is capable of performing well than the current state.
+---
+
+## Configuration
+
+- **Model:** `facebook/wav2vec2-base-960h` (can be changed in `train.py`)
+- **Pooling:** Mean pooling by default
+- **Class weights:** Computed automatically for imbalanced datasets
+- **Augmentation:** Controlled in `scripts/augmentation.py`
+- **Metrics:** F1, accuracy, precision, recall
+
+---
+
+## Example Usage
+
+**Training:**
+
+```bash
+python train.py
+```
+
+**Inference:**
+
+```bash
+streamlit run inference.py
+```
+
+---
+
+## Customization
+
+- **Add new emotions:** Update your metadata and label mapping in `train.py`.
+- **Change model:** Modify `MODEL_NAME` in `train.py`.
+- **Tune hyperparameters:** Edit `TrainingArguments` in `train.py`.
+- **Augmentation:** Edit `scripts/augmentation.py` for custom audio augmentations.
+
+---
+
+## Citation
+
+If you use this project, please cite the original [Wav2Vec2 paper](https://arxiv.org/abs/2006.11477) and Hugging Face Transformers.
+
+---
+
+## License
+
+This project is licensed under the MIT License.
+
+---
